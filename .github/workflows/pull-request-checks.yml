@@ -1,8 +1,6 @@
-name: Integrationtest
+name: PR checks
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -10,22 +8,65 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.x']
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile -t container-manager
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+          cache: 'pip'
 
-      - name: Build the Docker image (Integrationtest)
-        run: docker build . --file ./test/integrationtest/Dockerfile -t integrationtest
+      - name: Install the requirements
+        run: pip install -r requirements.txt
 
-      - name: Create a local storage directory
-        run: mkdir /tmp/storage && sudo chown 500:500 -R /tmp/storage
+      - name: Execute the unittests
+        run: python3 -m unittest discover test
 
-      - name: Run the integrationtest container
-        run: |
-          docker run -p 8080:8080 -v /tmp/storage:/storage -d integrationtest:latest && sleep 5
-      - name: Test the integrationtest app
-        run: |
-          curl -I localhost:8080 2>/dev/null | head -n 1 | cut -d$' ' -f2 | grep 200
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.x' ]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+          cache: 'pip'
+
+        - name: Install the requirements
+          run: pip install -r requirements.txt
+
+      - name: Execute the linting checks
+
+
+  coverage:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.x' ]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+          cache: 'pip'
+
+        - name: Install the requirements
+          run: pip install -r requirements.txt
+
+        - name: Execute the coverage checks
