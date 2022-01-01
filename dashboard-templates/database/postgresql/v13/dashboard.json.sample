@@ -895,8 +895,8 @@
         "allValue": ".*",
         "current": {
           "selected": false,
-          "text": "metrics.theiotstudio.com:443",
-          "value": "metrics.theiotstudio.com:443"
+          "text": "metrics.dummy.com:443",
+          "value": "metrics.dummy.com:443"
         },
         "datasource": {
           "type": "prometheus",
