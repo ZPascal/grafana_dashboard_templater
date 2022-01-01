@@ -1,15 +1,21 @@
-# grafana_dashboard_templater
+# Grafana dashboard templater
+
+## Description
 
 ## TODO
-- Documentation
-- Docstrings
+- GitHub action
 - PYPI support
+- Documentation
 
-## Installation & Requirements
+## Installation & requirements
 
-### Programs & tools to install
+`pip install `
 
-- Jinja2
+## Example
+
+```python
+
+```
 
 ## Contribution
 If you would like to contribute something, have an improvement request, or want to make a change inside the code, please open a pull request.
