@@ -48,7 +48,10 @@ jobs:
           run: pip install -r requirements.txt
 
       - name: Execute the linting checks
-
+        uses: reviewdog/action-flake8@v3.2.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          flake8_args: --config=.flake8
 
   coverage:
     runs-on: ubuntu-latest
@@ -69,4 +72,14 @@ jobs:
         - name: Install the requirements
           run: pip install -r requirements.txt
 
+        - name: Generate the coverage report
+          run: pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov=app tests/ | tee pytest-coverage.txt
+
         - name: Execute the coverage checks
+          uses: MishaKav/pytest-coverage-comment@v1.1.16
+            with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+              pytest-coverage-path: ./pytest-coverage.txt
+              junitxml-path: ./pytest.xml
+              hide-badge: true
+              create-new-commit: true

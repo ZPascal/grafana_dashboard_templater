@@ -1,6 +1,6 @@
 import unittest
 
-from grafana_dashboard.model import Model
+from src.grafana_dashboard.model import Model
 
 
 class ModelTestCase(unittest.TestCase):

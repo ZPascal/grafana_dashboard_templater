@@ -1,20 +1,29 @@
 # Grafana dashboard templater
 
+## TODO
+- Documentation
+- Github actions secrets
+- coveragerc file
+- flake8 file
+
 ## Description
 
-## TODO
-- GitHub action
-- PYPI support
-- Documentation
 
-## Installation & requirements
 
-`pip install `
+## Installation
+
+`pip install grafana-dashboard-templater`
 
 ## Example
 
 ```python
+dashboard_model: DashboardModel = DashboardModel(dashboard_templates_path="./dashboard-templates",
+                                                 dashboard_type="database",
+                                                 dashboard_name="postgresql",
+                                                 dashboard_version="v13")
 
+dashboard: Dashboard = Dashboard(dashboard_model)
+dashboard_json = dashboard.get_dashboard_json(template_values={"app_name": "PostgreSQL", "prometheus_name": "k8s-sonarqube-postgresql"})
 ```
 
 ## Contribution

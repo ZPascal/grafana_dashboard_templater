@@ -3,14 +3,14 @@ import os
 import unittest
 import jinja2
 
-from grafana_dashboard.model import Model
-from grafana_dashboard.dashboard import Dashboard
+from src.grafana_dashboard.model import Model
+from src.grafana_dashboard.dashboard import Dashboard
 
 
 class DashboardTestCase(unittest.TestCase):
     @staticmethod
     def __get_path_name() -> str:
-        if os.path.basename(os.getcwd()) == "test":
+        if os.path.basename(os.getcwd()) == "tests":
             return f"{os.path.dirname(os.getcwd())}{os.sep}dashboard-templates"
         else:
             return f"{os.getcwd()}{os.sep}dashboard-templates"
