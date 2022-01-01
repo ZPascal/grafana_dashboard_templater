@@ -9,21 +9,34 @@ from grafana_dashboard.model import Model
 
 
 class Dashboard:
+    """The class includes all necessary methods to template the selected dashboard and return it as a dict
+
+    Keyword arguments:
+    dashboard_model -> Inject a dashboard object that includes all necessary values and information
+    """
+
     def __init__(self, dashboard_model: Model):
         self.dashboard_model = dashboard_model
         self.logging = logging.Logger
 
     def get_dashboard_json(self, template_values: dict) -> dict:
+        """The method includes a functionality to template the selected dashboard and return the corresponding dashboard
+           as dictionary
+
+        Keyword arguments:
+        template_values -> Specify the inserted templating values as dict
+        """
+
         env = jinja2.Environment(loader=jinja2.FileSystemLoader("/"))
 
         try:
-            logging.info("Load the PostgreSQL monitoring config template.")
+            logging.info("Load the config template.")
             template_dashboard = env.get_template(
                 Dashboard.__get_dashboard_template(self)
             )
         except jinja2.TemplateNotFound as e:
             logging.error(f"Can not find the config template: {e} .")
-            sys.exit(1)
+            raise e
 
         if len(template_values) == 0:
             logging.error("Please define templating values.")
@@ -37,24 +50,25 @@ class Dashboard:
             fw.close()
         except Exception as e:
             logging.error(f"Please, check the error: {e} .")
-            sys.exit(1)
+            raise e
 
         try:
             with open(temp_path) as file:
                 json_dashboard = json.load(file)
         except Exception as e:
             logging.error(f"Please, check the error: {e} .")
-            sys.exit(1)
+            raise e
 
         try:
             os.remove(temp_path)
         except Exception as e:
             logging.error(f"Please, check the error: {e} .")
-            sys.exit(1)
+            raise e
 
         return json_dashboard
 
     def __get_dashboard_template(self) -> str:
+        """The methode identify and return the path of the dashboard template sample"""
         full_dashboard_path: str = (
             f"{self.dashboard_model.dashboard_templates_path}{os.sep}"
             f"{self.dashboard_model.dashboard_type}{os.sep}"
