@@ -66,9 +66,7 @@ class DashboardTestCase(unittest.TestCase):
             )
 
     def test_get_dashboard_json_no_template_values_error(self):
-        template_path: str = (
-            f"{os.path.dirname(os.getcwd())}{os.sep}dashboard-templates"
-        )
+        template_path: str = DashboardTestCase.__get_path_name()
         test_model: Model = Model(template_path, "database", "postgresql", "v13")
         test_dashboard: Dashboard = Dashboard(test_model)
 
