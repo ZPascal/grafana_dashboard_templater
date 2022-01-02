@@ -13,8 +13,7 @@ jobs:
         python-version: ['3.x']
 
     steps:
-      - name: Checkout the repository and the branch
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -36,8 +35,7 @@ jobs:
         python-version: [ '3.x' ]
 
     steps:
-      - name: Checkout the repository and the branch
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -62,8 +60,7 @@ jobs:
         python-version: [ '3.x' ]
 
     steps:
-      - name: Checkout the repository and the branch
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -72,17 +69,35 @@ jobs:
           architecture: x64
           cache: 'pip'
 
-        - name: Install the requirements
-          run: pip install -r requirements.txt
+      - name: Install the requirements
+        run: pip install -r requirements.txt && pip install coverage-badge
 
-        - name: Generate the coverage report
-          run: pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov=app tests/ | tee pytest-coverage.txt
+      - name: Generate the coverage report
+        run: pytest --junitxml=pytest.xml --cov=. tests/ | tee pytest-coverage.txt
 
-        - name: Execute the coverage checks
-          uses: MishaKav/pytest-coverage-comment@v1.1.16
-            with:
-              github_token: ${{ secrets.GITHUB_TOKEN }}
-              pytest-coverage-path: ./pytest-coverage.txt
-              junitxml-path: ./pytest.xml
-              hide-badge: true
-              create-new-commit: true
+      - name: Execute the coverage checks
+        uses: MishaKav/pytest-coverage-comment@v1.1.16
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pytest-coverage-path: ./pytest-coverage.txt
+          junitxml-path: ./pytest.xml
+          hide-badge: true
+          create-new-commit: true
+
+      - name: Generate coverage badge
+        run: coverage-badge -o doc/coverage.svg -f
+
+      - name: Commit files
+        if: steps.changed_files.outputs.files_changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add doc/coverage.svg
+          git commit -m "Updated coverage.svg"
+
+      - name: Push changes
+        if: steps.changed_files.outputs.files_changed == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

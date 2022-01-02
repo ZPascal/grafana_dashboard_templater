@@ -1,9 +1,5 @@
 # Grafana dashboard templater
 
-## TODO
-- coveragerc file
-- Update the GitHub actions
-
 ## Description
 
 The Grafana dashboard templater create a valid Grafana dashboard as dictionary based on a template and injected values.
