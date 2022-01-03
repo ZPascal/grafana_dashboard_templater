@@ -98,7 +98,11 @@ jobs:
           git commit -m "Updated coverage.svg"
 
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: github-actions-x/commit@v2.8
         with:
-          github_token: ${{ secrets.token }}
-          branch: ${{ github.ref }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: ${{ github.ref }}
+          commit-message: 'Updated coverage.svg'
+          files: docs/coverage.svg
+          name: github-actions[bot]
+          email: github-actions[bot]@users.noreply.github.com
