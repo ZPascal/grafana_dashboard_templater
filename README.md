@@ -1,4 +1,4 @@
-# Grafana dashboard templater
+# Grafana dashboard templater ![Coverage report](docs/coverage.svg)
 
 ## Description
 
