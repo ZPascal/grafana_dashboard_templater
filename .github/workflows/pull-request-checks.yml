@@ -93,14 +93,12 @@ jobs:
         with:
           files: "docs/coverage.svg"
 
-      - name: "Remove the coverage badge file"
-        if: steps.check_files.outputs.files_exists == 'true'
-        run: rm -rf docs/coverage.svg
-
       - name: Generate coverage badge
+        if: steps.check_files.outputs.files_exists == 'false'
         run: coverage-badge -o docs/coverage.svg -f
 
       - name: Commit files
+        if: steps.check_files.outputs.files_exists == 'false'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -108,6 +106,7 @@ jobs:
           git commit -m "Add coverage badge"
 
       - name: Push changes
+        if: steps.check_files.outputs.files_exists == 'false'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
