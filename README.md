@@ -1,15 +1,35 @@
-# grafana_dashboard_templater
+# Grafana dashboard templater ![Coverage report](docs/coverage.svg)
 
-## TODO
-- Documentation
-- Docstrings
-- PYPI support
+## Description
 
-## Installation & Requirements
+The Grafana dashboard templater create a valid Grafana dashboard as dictionary based on a template and injected values.
 
-### Programs & tools to install
+## Dashboard template folder structure
 
-- Jinja2
+```
+dashboard-templates <- Folder of the dashboard templates
+     database <- Dashboard type
+        postgresql <- Dashboard name
+            v13 <- Dashboard version
+                dashboard.json.sample <- Dashboard template
+```
+
+## Installation
+
+`pip install grafana-dashboard-templater`
+
+## Example
+
+```python
+from grafana_dashboard.model import Model
+from grafana_dashboard.dashboard import Dashboard
+
+dashboard_model: Model = Model(dashboard_templates_path="./dashboard-templates", dashboard_type="database",
+                               dashboard_name="postgresql", dashboard_version="v13")
+
+dashboard: Dashboard = Dashboard(dashboard_model)
+dashboard_json = dashboard.get_dashboard_json(template_values={"app_name": "PostgreSQL", "prometheus_name": "k8s-sonarqube-postgresql"})
+```
 
 ## Contribution
 If you would like to contribute something, have an improvement request, or want to make a change inside the code, please open a pull request.
