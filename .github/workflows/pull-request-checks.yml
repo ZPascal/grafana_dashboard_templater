@@ -87,6 +87,15 @@ jobs:
           hide-badge: true
           create-new-commit: true
 
+      - name: "Check if coverage badge file existence"
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "docs/coverage.svg"
+
+      - name: "Remove the coverage badge file"
+        if: steps.check_files.outputs.files_exists == 'true'
+        run: rm -rf docs/coverage.svg
+
       - name: Generate coverage badge
         run: coverage-badge -o docs/coverage.svg -f
 
