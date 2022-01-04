@@ -88,6 +88,7 @@ jobs:
           create-new-commit: true
 
       - name: "Check if coverage badge file existence"
+        id: check_files
         uses: andstor/file-existence-action@v1
         with:
           files: "docs/coverage.svg"
