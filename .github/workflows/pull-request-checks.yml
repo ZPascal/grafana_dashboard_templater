@@ -92,14 +92,10 @@ jobs:
 
       - name: Commit files
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add docs/coverage.svg
           git commit -m "Add coverage badge"
-
-      - name: Check the branch
-        run: |
-          git branch
 
       - name: Push changes
         uses: ad-m/github-push-action@master
