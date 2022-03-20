@@ -1,9 +1,0 @@
-docs_dir: content
-nav:
-- Home: index.md
-- Grafana Dashboard Templater Documentation:
-  - Model: grafana_dashboard_templater/model.md
-  - Dashboard: grafana_dashboard_templater/dashboard.md
-repo_url: https://github.com/ZPascal/grafana_dashboard_templater
-site_name: Grafana Dashboard Templater
-theme: readthedocs
