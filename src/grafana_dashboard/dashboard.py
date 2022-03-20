@@ -11,8 +11,12 @@ from src.grafana_dashboard.model import Model
 class Dashboard:
     """The class includes all necessary methods to template the selected dashboard and return it as a dict
 
-    Keyword arguments:
-    dashboard_model -> Inject a dashboard object that includes all necessary values and information
+    Args:
+        dashboard_model (Model): Inject a dashboard object that includes all necessary values and information
+
+    Attributes:
+        dashboard_model (Model): This is where we store the model
+        logging (logging.Logger): This is where we store the logger
     """
 
     def __init__(self, dashboard_model: Model):
@@ -23,8 +27,14 @@ class Dashboard:
         """The method includes a functionality to template the selected dashboard and return the corresponding dashboard
            as dictionary
 
-        Keyword arguments:
-        template_values -> Specify the inserted templating values as dict
+        Args:
+            template_values (dict): Specify the inserted templating values as dict
+
+        Raises:
+            Exception: Unspecified error by executing the functionality
+
+        Returns:
+            json_dashboard (dict): Returns the dashboard as dict
         """
 
         env = jinja2.Environment(loader=jinja2.FileSystemLoader("/"))
@@ -68,11 +78,17 @@ class Dashboard:
         return json_dashboard
 
     def __get_dashboard_template(self) -> str:
-        """The methode identify and return the path of the dashboard template sample"""
+        """The methode identify and return the path of the dashboard template sample
+
+        Returns:
+            full_dashboard_path (str): Returns the full dashboard path
+        """
+
         full_dashboard_path: str = (
             f"{self.dashboard_model.dashboard_templates_path}{os.sep}"
             f"{self.dashboard_model.dashboard_type}{os.sep}"
             f"{self.dashboard_model.dashboard_name}{os.sep}"
             f"{self.dashboard_model.dashboard_version}{os.sep}dashboard.json.sample"
         )
+
         return full_dashboard_path

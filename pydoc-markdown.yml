@@ -1,0 +1,23 @@
+loaders:
+  - type: python
+processors:
+  - type: filter
+  - type: smart
+  - type: crossref
+renderer:
+  type: mkdocs
+  pages:
+    - title: Home
+      name: index
+      source: docs/grafana_dashboard_templater.md
+    - title: Grafana Dashboard Templater Documentation
+      name: grafana_dashboard_templater
+      children:
+        - title: Model
+          contents: [ grafana_dashboard.model.* ]
+        - title: Dashboard
+          contents: [ grafana_dashboard.dashboard.* ]
+  mkdocs_config:
+    site_name: Grafana Dashboard Templater
+    theme: readthedocs
+    repo_url: https://github.com/ZPascal/grafana_dashboard_templater
