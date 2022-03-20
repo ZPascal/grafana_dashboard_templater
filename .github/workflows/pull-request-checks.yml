@@ -73,7 +73,7 @@ jobs:
           cache: 'pip'
 
       - name: Install the requirements
-        run: pip install -r requirements.txt && pip install pytest pytest-cov coverage-badge pydoc-markdown mkdocs
+        run: pip install -r requirements.txt && pip install pytest pytest-cov coverage-badge
 
       - name: Generate the coverage report
         run: export PYTHONPATH=$PWD && pytest --junitxml=pytest.xml --cov=. tests/ | tee pytest-coverage.txt
@@ -98,7 +98,7 @@ jobs:
         run: coverage-badge -o docs/coverage.svg -f
 
       - name: Generate documentation
-        run: timeout 15 pydoc-markdown --server
+        run: pydoc-markdown --render-toc
 
       - name: Commit files
         if: steps.check_files.outputs.files_exists == 'false'
