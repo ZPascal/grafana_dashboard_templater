@@ -98,7 +98,7 @@ jobs:
         run: coverage-badge -o docs/coverage.svg -f
 
       - name: Generate documentation
-        run: cd && timeout 15 pydoc-markdown --server
+        run: timeout 15 pydoc-markdown --server
 
       - name: Commit files
         if: steps.check_files.outputs.files_exists == 'false'
