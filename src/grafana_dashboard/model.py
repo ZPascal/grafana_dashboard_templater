@@ -1,11 +1,11 @@
 class Model:
-    """The class describes and set up all necessary values for the template mechanism as a data model.
+    """The class includes all necessary variables to specify a query for the datasource search endpoint
 
-    Keyword arguments:
-    dashboard_templates_path -> Specify the template path for all dashboard's
-    dashboard_type -> Specify the dashboard type e.g. database
-    dashboard_name -> Specify the dashboard name e.g. postgres
-    dashboard_version -> Specify the dashboard version e.g. v13
+    Args:
+        dashboard_templates_path (str): Specify the template path for all dashboard's (default None)
+        dashboard_type (str): Specify the dashboard type e.g. database (default None)
+        dashboard_name (str): Specify the dashboard name e.g. postgres (default None)
+        dashboard_version (str): Specify the dashboard version e.g. v13 (default None)
     """
 
     def __init__(
