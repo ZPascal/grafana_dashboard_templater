@@ -1,0 +1,43 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  test-case:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.x' ]
+
+    steps:
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          name: id_rsa
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          config: ${{ secrets.CONFIG }}
+          if_key_exists: fail
+
+     - uses: actions/checkout@v3
+       with:
+         repository: ${{ github.repository }}
+
+    - name: Generate documentation
+      run: pydoc-markdown --render-toc && mv build/docs/* docs
+
+    - name: Commit files
+      run: |
+         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+         git config --local user.name "github-actions[bot]"
+         git commit -m "Add changes" -a
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        repository: ${{ github.repository }}
+        branch: ${{ github.ref }}
+        force: true
