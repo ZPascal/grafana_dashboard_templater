@@ -18,6 +18,14 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+          cache: 'pip'
+
+
       - name: Install the requirements
         run: pip install -r requirements.txt && pip install pytest pytest-cov coverage-badge
 
