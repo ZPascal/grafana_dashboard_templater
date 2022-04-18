@@ -13,11 +13,6 @@ jobs:
         python-version: [ '3.x' ]
 
     steps:
-      - name: Install SSH Client
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - uses: actions/checkout@v3
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
