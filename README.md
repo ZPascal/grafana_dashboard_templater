@@ -4,7 +4,7 @@
 
 The Grafana dashboard templater create a valid Grafana dashboard as dictionary based on a template and injected values.
 
-## Dashboard template folder structure test
+## Dashboard template folder structure
 
 ```
 dashboard-templates <- Folder of the dashboard templates

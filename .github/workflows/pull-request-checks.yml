@@ -98,7 +98,7 @@ jobs:
         run: coverage-badge -o docs/coverage.svg -f
 
       - name: Generate documentation
-        run: pydoc-markdown --render-toc && rm -rf docs/content && mv build/docs/* docs
+        run: pydoc-markdown --render-toc && mv build/docs/* docs
 
       - name: Commit files
         if: steps.check_files.outputs.files_exists == 'false'
