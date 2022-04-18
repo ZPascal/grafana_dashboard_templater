@@ -24,7 +24,7 @@ jobs:
           files: "docs/test.txt"
 
       - name: Generate file
-        run: touch docs/test.txt && git status
+        run: touch docs/test.txt
 
       - name: Commit files
         if: steps.check_files.outputs.files_exists == 'false'
@@ -33,7 +33,10 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add --force docs
           git commit -m "Add test file"
-  
+
+      - name: Push
+        run: git status && git push
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
