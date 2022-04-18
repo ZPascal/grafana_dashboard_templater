@@ -24,8 +24,6 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - uses: actions/checkout@v3
-        with:
-          repository: git@github.com:ZPascal/grafana_dashboard_templater.git
 
       - name: Generate documentation
         run: pydoc-markdown --render-toc && rm -rf docs/content && mv build/docs/* docs
