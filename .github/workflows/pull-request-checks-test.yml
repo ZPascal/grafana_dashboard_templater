@@ -19,9 +19,11 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Install the requirements
-        run: pip install pytest pytest-cov coverage-badge
+        run: pip install pytest pytest-cov coverage-badge pydoc-markdown mkdocs mkdocs-material
 
       - uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Generate documentation
         run: pydoc-markdown --render-toc && rm -rf docs/content && mv build/docs/* docs
