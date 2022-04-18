@@ -40,6 +40,6 @@ jobs:
           git commit -m "Add test file"
   
       - name: Push changes
-        uses: ad-m/github-push-action@add-deploy-key-functionality
+        uses: ad-m/github-push-action@master
         with:
           force: true
