@@ -13,15 +13,13 @@ jobs:
         python-version: [ '3.x' ]
 
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-
       - name: Install SSH Client
         uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Install the requirements
+        run: pip install -r requirements.txt && pip install pytest pytest-cov coverage-badge
 
       - uses: actions/checkout@v3
 
