@@ -5,8 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-
-  test_case:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -29,11 +28,13 @@ jobs:
     - name: Generate documentation
       run: pydoc-markdown --render-toc && rm -rf docs/content && mv build/docs/* docs
 
-    - name: Commit files
-      run: |
-         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-         git config --local user.name "github-actions[bot]"
-         git commit -m "Add changes" -a
+  - name: Commit files
+    if: steps.check_files.outputs.files_exists == 'false'
+    run: |
+      git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      git config --local user.name "github-actions[bot]"
+      git add --force docs
+      git commit -m "Add coverage badge and documentation"
 
     - name: Push changes
       uses: ad-m/github-push-action@add-deploy-key-functionality
