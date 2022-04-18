@@ -13,6 +13,10 @@ jobs:
         python-version: [ '3.x' ]
 
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
