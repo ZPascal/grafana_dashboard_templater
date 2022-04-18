@@ -35,7 +35,7 @@ jobs:
           git commit -m "Add test file"
 
       - name: Push
-        run: git status && git push
+        run: ls -la && git status && git push
 
       - name: Push changes
         uses: ad-m/github-push-action@master
