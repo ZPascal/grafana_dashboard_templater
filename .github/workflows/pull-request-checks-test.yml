@@ -38,6 +38,6 @@ jobs:
         run: ls -la docs && git status && cat .git/config
 
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@4200574c0f7956ff32ffe9fe6de92faa3cbc9174
         with:
           branch: ${{ github.head_ref }}
