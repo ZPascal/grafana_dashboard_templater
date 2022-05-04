@@ -40,3 +40,4 @@ jobs:
         with:
           branch: ${{ github.head_ref }}
           force: true
+          ssh: true
