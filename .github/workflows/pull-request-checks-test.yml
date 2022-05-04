@@ -36,7 +36,7 @@ jobs:
           git commit -m "Add test file"
 
       - name: Push changes
-        uses: ad-m/github-push-action@f64de0b94ef7c8475bf57eabf8734d624eabd160
+        uses: ad-m/github-push-action@934ed0d90fbf642735a4508566b7f951b35b31d5
         with:
           branch: ${{ github.head_ref }}
           force: true
