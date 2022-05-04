@@ -1,0 +1,43 @@
+name: PR checks Test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  dummy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.x' ]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: "Check if coverage badge file existence"
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "docs/test.txt"
+
+      - name: Generate file
+        run: touch docs/test.txt
+
+
+      - name: Commit files
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add --force docs
+          git commit -m "Add test file"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@93193bb7848868e6d5cd07d73ffd248be5791d48
+        with:
+          branch: ${{ github.head_ref }}
+          force: true
+          ssh: true
