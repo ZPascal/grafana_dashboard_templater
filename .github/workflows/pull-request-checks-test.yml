@@ -26,6 +26,7 @@ jobs:
       - name: Generate file
         run: touch docs/test.txt
 
+
       - name: Commit files
         if: steps.check_files.outputs.files_exists == 'false'
         run: |
