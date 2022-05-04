@@ -35,12 +35,8 @@ jobs:
           git add --force docs
           git commit -m "Add test file"
 
-      - name: Push
-        run: ls -la docs && git status && cat .git/config
-
       - name: Push changes
         uses: ad-m/github-push-action@f64de0b94ef7c8475bf57eabf8734d624eabd160
         with:
           branch: ${{ github.head_ref }}
-          ssh: true
           force: true
