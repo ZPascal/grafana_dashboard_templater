@@ -17,6 +17,7 @@ jobs:
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ref: test-checks
+          clean: true
           
       
       - name: Generate file
