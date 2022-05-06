@@ -19,7 +19,7 @@ jobs:
           
       
       - name: Generate file
-        run: rm docs/test.txt && echo test1 > docs/test.txt
+        run: rm docs/test.txt && echo test2 > docs/test.txt
       
       - name: "Check if coverage badge file existence"
         id: check_files
@@ -39,4 +39,4 @@ jobs:
         uses: ad-m/github-push-action@0dba12bac42781efaeaa2482eeb069a8031494ce
         with:
           branch: ${{ github.head_ref }}
-          force: true
+          force_with_lease: true
