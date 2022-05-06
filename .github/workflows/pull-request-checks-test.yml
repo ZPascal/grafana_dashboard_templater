@@ -38,7 +38,7 @@ jobs:
           git commit -m "Add test file"
 
       - name: Push changes
-        uses: ad-m/github-push-action@0dba12bac42781efaeaa2482eeb069a8031494ce
+        uses: ad-m/github-push-action@ef523df61fa3877ccb08502564faf0f93aa21b38
         with:
           branch: ${{ github.head_ref }}
           force_with_lease: true
