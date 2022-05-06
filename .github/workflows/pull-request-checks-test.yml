@@ -16,10 +16,11 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ref: test-checks
           
       
       - name: Generate file
-        run: rm docs/test.txt && echo test2 > docs/test.txt
+        run: git status && git branch && rm docs/test.txt && echo test2 > docs/test.txt
       
       - name: "Check if coverage badge file existence"
         id: check_files
