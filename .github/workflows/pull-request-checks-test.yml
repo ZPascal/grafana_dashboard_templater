@@ -28,7 +28,7 @@ jobs:
           files: "docs/test.txt"
 
       - name: Commit files
-        if: steps.check_files.outputs.files_exists == 'false'
+        if: steps.check_files.outputs.files_exists == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
