@@ -24,7 +24,7 @@ jobs:
           files: "docs/test.txt"
 
       - name: Generate file
-        run: touch docs/test.txt
+        run: echo test > docs/test.txt
 
 
       - name: Commit files
@@ -36,8 +36,7 @@ jobs:
           git commit -m "Add test file"
 
       - name: Push changes
-        uses: ad-m/github-push-action@93193bb7848868e6d5cd07d73ffd248be5791d48
+        uses: ad-m/github-push-action@0dba12bac42781efaeaa2482eeb069a8031494ce
         with:
           branch: ${{ github.head_ref }}
           force: true
-          ssh: true
