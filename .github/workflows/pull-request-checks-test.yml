@@ -41,7 +41,7 @@ jobs:
           git --no-pager log -n 5
     
       - name: Push changes
-        uses: ad-m/github-push-action@e0af3985411745cc64035656f773f4e8253ed76d
+        uses: ad-m/github-push-action@a3e0b8060c707698a058c22ed790ad59c8730b5e
         with:
           branch: ${{ github.head_ref }}
           force_with_lease: true
