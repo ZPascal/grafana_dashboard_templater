@@ -21,7 +21,7 @@ jobs:
           
       
       - name: Generate file
-        run: echo test3 > docs/test3.txt
+        run: echo test4 > docs/test4.txt
       
       - name: "Check if coverage badge file existence"
         id: check_files
@@ -34,8 +34,9 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add --force docs
-          git commit -m "Add test file"
+          git add docs
+          git reset --soft HEAD~2
+          git commit -m "Add new test file"
     
       - name: Push changes
         uses: ad-m/github-push-action@e0af3985411745cc64035656f773f4e8253ed76d
