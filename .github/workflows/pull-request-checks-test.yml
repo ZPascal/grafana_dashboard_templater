@@ -21,7 +21,7 @@ jobs:
           
       
       - name: Generate file
-        run: git status && git branch && rm docs/test.txt && echo test2 > docs/test.txt
+        run: echo test3 > docs/test3.txt
       
       - name: "Check if coverage badge file existence"
         id: check_files
@@ -37,6 +37,7 @@ jobs:
           git add --force docs
           git commit -m "Add test file"
           git fetch
+          git status
     
       - name: Push changes
         uses: ad-m/github-push-action@e0af3985411745cc64035656f773f4e8253ed76d
