@@ -38,6 +38,7 @@ jobs:
           git commit -m "Add test file"
           git fetch
           git status
+          git config remote.origin.prune true
     
       - name: Push changes
         uses: ad-m/github-push-action@e0af3985411745cc64035656f773f4e8253ed76d
