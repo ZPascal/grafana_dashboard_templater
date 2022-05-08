@@ -16,18 +16,20 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ref: test
-          clean: true
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
       
       - name: Generate file
         run: echo test1 > docs/test1.txt
 
+      - name: Generate file
+        run: echo test > docs/test.txt
+
       - name: "Check if file existence"
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: "docs/test1.txt"
+          files: "docs/test.txt"
       
       - name: Commit files
         run: |
@@ -40,5 +42,4 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@1cf42bc8dfde4f854e3daf6c06babbe5597d9785
         with:
-          branch: ${{ github.head_ref }}
           force_with_lease: true
