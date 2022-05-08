@@ -98,7 +98,7 @@ jobs:
         run: coverage-badge -o docs/coverage.svg -f
 
       - name: Generate documentation
-        run: pydoc-markdown --render-toc && mv build/docs/* docs
+        run: pydoc-markdown --render-toc && rm -rf docs/content && mv build/docs/* docs
 
       - name: Commit files
         if: steps.check_files.outputs.files_exists == 'false'
@@ -107,7 +107,6 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add --force docs
           git commit -m "Add coverage badge and documentation"
-
       - name: Push changes
         if: steps.check_files.outputs.files_exists == 'false'
         uses: ad-m/github-push-action@master
