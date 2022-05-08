@@ -15,20 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ref: ${{ github.head_ref }}
       
       - name: Generate file
-        run: echo test1 > docs/test1.txt
-
-      - name: Generate file
-        run: echo test > docs/test.txt
+        run: rm docs/test1.txt && echo test1 > docs/test1.txt
 
       - name: "Check if file existence"
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
-          files: "docs/test.txt"
+          files: "docs/test1.txt"
       
       - name: Commit files
         run: |
