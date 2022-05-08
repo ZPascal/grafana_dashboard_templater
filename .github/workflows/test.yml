@@ -38,7 +38,7 @@ jobs:
           git commit -m "Test"
     
       - name: Push changes
-        uses: ad-m/github-push-action@a3e0b8060c707698a058c22ed790ad59c8730b5e
+        uses: ad-m/github-push-action@093e80e1a020f6569a998d02e5472e54e7cd42fe
         with:
           branch: ${{ github.head_ref }}
           force_with_lease: true
