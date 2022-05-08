@@ -1,0 +1,44 @@
+name: PR checks Test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  dummy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.x' ]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ref: test
+          clean: true
+          fetch-depth: 0
+      
+      - name: Generate file
+        run: echo test1 > docs/test1.txt
+
+      - name: "Check if file existence"
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "docs/test1.txt"
+      
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git reset --hard HEAD~2
+          git merge --squash HEAD@{1}
+          git commit -m "Test"
+    
+      - name: Push changes
+        uses: ad-m/github-push-action@1cf42bc8dfde4f854e3daf6c06babbe5597d9785
+        with:
+          branch: ${{ github.head_ref }}
+          force_with_lease: true

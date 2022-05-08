@@ -107,7 +107,6 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add --force docs
           git commit -m "Add coverage badge and documentation"
-
       - name: Push changes
         if: steps.check_files.outputs.files_exists == 'false'
         uses: ad-m/github-push-action@master
