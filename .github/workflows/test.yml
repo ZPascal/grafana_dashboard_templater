@@ -17,7 +17,6 @@ jobs:
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ref: ${{ github.head_ref }}
-          fetch-depth: 0
       
       - name: Generate file
         run: echo test1 > docs/test1.txt
@@ -35,9 +34,8 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git reset --hard HEAD~2
-          git merge --squash HEAD@{1}
-          git commit -m "Test"
+          git add docs --force
+          git commit -m "Test the action"
     
       - name: Push changes
         uses: ad-m/github-push-action@1cf42bc8dfde4f854e3daf6c06babbe5597d9785
