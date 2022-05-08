@@ -22,7 +22,6 @@ jobs:
           
       
       - name: Commit files
-        if: steps.check_files.outputs.files_exists == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -32,7 +31,6 @@ jobs:
     
       - name: Push changes
         uses: ad-m/github-push-action@a3e0b8060c707698a058c22ed790ad59c8730b5e
-        if: steps.check_files.outputs.files_exists == 'true'
         with:
           branch: ${{ github.head_ref }}
           force_with_lease: true
