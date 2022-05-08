@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ref: test-checks
+          ref: test
           clean: true
           fetch-depth: 0
           
