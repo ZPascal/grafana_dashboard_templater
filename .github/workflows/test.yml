@@ -18,7 +18,7 @@ jobs:
           ref: ${{ github.head_ref }}
       
       - name: Generate file
-        run: rm docs/test1.txt && echo test1 > docs/test1.txt
+        run: rm docs/test1.txt && echo test2 > docs/test1.txt
 
       - name: "Check if file existence"
         id: check_files
@@ -30,7 +30,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add docs --force
+          git add docs
           git commit -m "Test the action"
     
       - name: Push changes
