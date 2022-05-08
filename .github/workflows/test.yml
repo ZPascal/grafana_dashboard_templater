@@ -31,8 +31,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git branch
-          git status
           git reset --hard HEAD~2
           git merge --squash HEAD@{1}
           git commit -m "Test"
