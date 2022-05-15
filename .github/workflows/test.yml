@@ -26,9 +26,6 @@ jobs:
         with:
           files: "docs/test1.txt"
       
-      - name: Show config
-        run: ls -la && cat .git/config
-      
       - name: Commit files
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
