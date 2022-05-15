@@ -32,7 +32,10 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add docs
           git commit -m "Test the action"
-    
+      
+      - name: Show config
+        run: cat .git/config
+      
       - name: Push changes
         uses: ad-m/github-push-action@1cf42bc8dfde4f854e3daf6c06babbe5597d9785
         with:
