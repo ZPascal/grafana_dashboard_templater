@@ -34,6 +34,6 @@ jobs:
           git commit -m "Test the action"
 
       - name: Push changes
-        uses: ad-m/github-push-action@22a747d8c30ab32c2970108380010eb6a2d6b9b1
+        uses: ad-m/github-push-action@97a9d9f77011fcc1896dc07ea81353bfbc8e11d0
         with:
           pull_first: true
