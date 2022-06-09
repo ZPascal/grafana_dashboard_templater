@@ -36,3 +36,5 @@ jobs:
 
       - name: Push changes
         uses: ad-m/github-push-action@c68b16d034dd8af6756e741f2421a735b1f64fbb
+        with:
+          pull_first: true
