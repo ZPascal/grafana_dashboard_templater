@@ -18,7 +18,7 @@ jobs:
           ref: ${{ github.head_ref }}
       
       - name: Generate file
-        run: rm docs/test1.txt && echo test2 > docs/test1.txt
+        run: rm docs/test1.txt && echo test3 > docs/test1.txt
 
       - name: "Check if file existence"
         id: check_files
