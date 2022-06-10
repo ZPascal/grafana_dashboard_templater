@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
+          fetch-depth: 0
       
       - name: Generate file
         run: rm docs/test1.txt && echo test3 > docs/test1.txt
@@ -34,6 +35,6 @@ jobs:
           git commit -m "Test the action"
 
       - name: Push changes
-        uses: ad-m/github-push-action@97a9d9f77011fcc1896dc07ea81353bfbc8e11d0
+        uses: ad-m/github-push-action@cf69c72b5fcff99563c0cd347d2ef30c658f287a
         with:
           pull_first: true
