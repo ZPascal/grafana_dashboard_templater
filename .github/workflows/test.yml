@@ -36,3 +36,5 @@ jobs:
 
       - name: Push changes
         uses: ad-m/github-push-action@cf69c72b5fcff99563c0cd347d2ef30c658f287a
+        with:
+          force: true
