@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
       
       - name: Generate file
-        run: rm docs/test1.txt && echo test4 > docs/test1.txt
+        run: rm docs/test1.txt && echo test1 > docs/test2.txt
 
       - name: "Check if file existence"
         id: check_files
