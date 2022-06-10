@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
       
       - name: Generate file
-        run: rm docs/test1.txt && echo test3 > docs/test1.txt
+        run: rm docs/test1.txt && echo test4 > docs/test1.txt
 
       - name: "Check if file existence"
         id: check_files
@@ -36,5 +36,3 @@ jobs:
 
       - name: Push changes
         uses: ad-m/github-push-action@cf69c72b5fcff99563c0cd347d2ef30c658f287a
-        with:
-          pull_first: true
