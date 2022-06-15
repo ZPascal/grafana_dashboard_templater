@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
       
       - name: Generate file
-        run: rm docs/test1.txt && echo test1 > docs/test2.txt
+        run: rm docs/test1.txt && echo test1 > docs/test1.txt
 
       - name: "Check if file existence"
         id: check_files
@@ -35,6 +35,6 @@ jobs:
           git commit -m "Test the action"
 
       - name: Push changes
-        uses: ad-m/github-push-action@cf69c72b5fcff99563c0cd347d2ef30c658f287a
+        uses: ad-m/github-push-action@baeacdb06e3821b99c7df2209f74b9f3d783063e
         with:
-          force: true
+          force_with_lease: true
