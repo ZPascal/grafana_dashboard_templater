@@ -17,24 +17,17 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-      
-      - name: Generate file
-        run: rm docs/test1.txt && echo test1 > docs/test1.txt
 
-      - name: "Check if file existence"
-        id: check_files
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "docs/test1.txt"
-      
       - name: Commit files
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add docs --force
+          git reset --soft HEAD~3
+          git add docs
           git commit -m "Test the action"
 
       - name: Push changes
-        uses: ad-m/github-push-action@a904cf62b86d852da84aba9b7eb3b8d5e62cc130
+        uses: ad-m/github-push-action@cfc10a6161cb45fdaa7cb39dfb870e1ac7c32d3d
         with:
+          branch: ${{ github.ref }}
           force_with_lease: true
