@@ -1,4 +1,4 @@
-name: PR checks Test
+name: PR checks Test 2
 
 on:
   pull_request:
@@ -35,6 +35,6 @@ jobs:
           git commit -m "Test the action"
 
       - name: Push changes
-        uses: ad-m/github-push-action@ea7521973ea101d0e96b24bb1909740448ef0727
+        uses: ad-m/github-push-action@4a47af8c1f0050f78e7d70ca0580f360c2dace98
         with:
           force_with_lease: true
