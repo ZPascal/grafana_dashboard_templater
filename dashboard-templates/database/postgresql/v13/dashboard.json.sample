@@ -108,7 +108,7 @@
           "alias": "fetched",
           "datasource": {
             "type": "prometheus",
-            "uid": "BgtxrNVMk"
+            "uid": "test"
           },
           "dsType": "prometheus",
           "exemplar": true,
@@ -169,7 +169,7 @@
           "alias": "fetched",
           "datasource": {
             "type": "prometheus",
-            "uid": "BgtxrNVMk"
+            "uid": "test"
           },
           "dsType": "prometheus",
           "expr": "sum(irate(pg_stat_database_tup_returned{datname=~\"$db\",instance=~\"$host\"}[5m]))",
@@ -227,7 +227,7 @@
           "alias": "fetched",
           "datasource": {
             "type": "prometheus",
-            "uid": "BgtxrNVMk"
+            "uid": "test"
           },
           "dsType": "prometheus",
           "expr": "sum(irate(pg_stat_database_tup_inserted{datname=~\"$db\",instance=~\"$host\"}[5m]))",
@@ -285,7 +285,7 @@
           "alias": "fetched",
           "datasource": {
             "type": "prometheus",
-            "uid": "BgtxrNVMk"
+            "uid": "test"
           },
           "dsType": "prometheus",
           "expr": "sum(irate(pg_stat_database_tup_updated{datname=~\"$db\",instance=~\"$host\"}[5m]))",
@@ -343,7 +343,7 @@
           "alias": "fetched",
           "datasource": {
             "type": "prometheus",
-            "uid": "BgtxrNVMk"
+            "uid": "test"
           },
           "dsType": "prometheus",
           "expr": "sum(irate(pg_stat_database_tup_deleted{datname=~\"$db\",instance=~\"$host\"}[5m]))",
@@ -404,7 +404,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "BgtxrNVMk"
+        "uid": "test"
       },
       "fieldConfig": {
         "defaults": {
@@ -526,7 +526,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "BgtxrNVMk"
+        "uid": "test"
       },
       "fieldConfig": {
         "defaults": {
@@ -614,7 +614,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "BgtxrNVMk"
+        "uid": "test"
       },
       "fieldConfig": {
         "defaults": {
@@ -799,7 +799,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "BgtxrNVMk"
+        "uid": "test"
       },
       "fieldConfig": {
         "defaults": {
@@ -900,7 +900,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "BgtxrNVMk"
+          "uid": "test"
         },
         "definition": "label_values(up{job=\"{{ prometheus_name }}-postgresql\"},instance)",
         "hide": 2,
@@ -930,7 +930,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "BgtxrNVMk"
+          "uid": "test"
         },
         "definition": "",
         "hide": 2,
