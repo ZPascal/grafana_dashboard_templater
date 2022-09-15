@@ -1,9 +1,9 @@
-import unittest
+from unittest import TestCase
 
-from src.grafana_dashboard.model import Model
+from grafana_dashboard.model import Model
 
 
-class ModelTestCase(unittest.TestCase):
+class ModelTestCase(TestCase):
     def test_model_successful(self):
         test_model: Model = Model("test1", "test2", "test3", "test4")
         self.assertEqual("test1", test_model.dashboard_templates_path)
@@ -17,7 +17,3 @@ class ModelTestCase(unittest.TestCase):
         self.assertNotEqual("test2", test_model.dashboard_type)
         self.assertNotEqual("test3", test_model.dashboard_version)
         self.assertNotEqual("test4", test_model.dashboard_templates_path)
-
-
-if __name__ == "__main__":
-    unittest.main()

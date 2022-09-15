@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="grafana-dashboard-templater",
-    version="1.0.1",
+    version="1.0.2",
     author="Pascal Zimmermann",
     author_email="info@theiotstudio.com",
     description="A Grafana dashboard templater",
@@ -20,8 +20,7 @@ setuptools.setup(
         "License :: OSI Approved",
         "Operating System :: OS Independent",
     ],
-    package_dir={"": "src"},
-    packages=setuptools.find_packages(where="src"),
+    packages=["grafana_dashboard"],
     install_requires=["jinja2"],
     python_requires=">=3.6",
 )
