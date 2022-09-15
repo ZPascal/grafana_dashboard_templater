@@ -1,13 +1,15 @@
 import logging
 import os
-import unittest
+import tempfile
+from unittest import TestCase
+from unittest.mock import MagicMock
 import jinja2
 
-from src.grafana_dashboard.model import Model
-from src.grafana_dashboard.dashboard import Dashboard
+from grafana_dashboard.model import Model
+from grafana_dashboard.dashboard import Dashboard
 
 
-class DashboardTestCase(unittest.TestCase):
+class DashboardTestCase(TestCase):
     @staticmethod
     def __get_path_name() -> str:
         if os.path.basename(os.getcwd()) == "tests":
@@ -55,9 +57,7 @@ class DashboardTestCase(unittest.TestCase):
         self.assertEqual("test", dashboard["templating"]["list"][1]["current"]["text"])
 
     def test_get_dashboard_json_no_config_template_error(self):
-        template_path: str = (
-            f"{os.path.dirname(os.getcwd())}{os.sep}dashboard"
-        )
+        template_path: str = f"{os.path.dirname(os.getcwd())}{os.sep}dashboard"
         test_model: Model = Model(template_path, "database", "postgresql", "v13")
         test_dashboard: Dashboard = Dashboard(test_model)
         with self.assertRaises(jinja2.TemplateNotFound):
@@ -73,6 +73,23 @@ class DashboardTestCase(unittest.TestCase):
         with self.assertRaises(SystemExit):
             test_dashboard.get_dashboard_json({})
 
+    def test__write_tmp_dashboard_json_write_not_possible(self):
+        template_path: str = DashboardTestCase.__get_path_name()
+        test_model: Model = Model(template_path, "database", "postgresql", "v13")
+        test_dashboard: Dashboard = Dashboard(test_model)
 
-if __name__ == "__main__":
-    unittest.main()
+        with self.assertRaises(AttributeError):
+            with tempfile.NamedTemporaryFile() as tmp_file:
+                test_dashboard._Dashboard__write_tmp_dashboard_json(
+                    tmp_file.name,
+                    MagicMock,
+                    {"app_name": "test", "prometheus_name": "test_name"},
+                )
+
+    def test__get_dashboard_json_json_not_available(self):
+        template_path: str = DashboardTestCase.__get_path_name()
+        test_model: Model = Model(template_path, "database", "postgresql", "v13")
+        test_dashboard: Dashboard = Dashboard(test_model)
+
+        with self.assertRaises(FileNotFoundError):
+            test_dashboard._Dashboard__get_dashboard_json("/tmp/dashboard1.json")
