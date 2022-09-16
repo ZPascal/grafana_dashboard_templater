@@ -33,23 +33,22 @@ The class includes all necessary methods to template the selected dashboard and 
 #### get\_dashboard\_json
 
 ```python
-def get_dashboard_json(template_values: dict) -> dict
+def get_dashboard_json(template_values: Dict) -> Dict
 ```
 
-The method includes a functionality to template the selected dashboard and return the corresponding dashboard
-as dictionary
+The method includes a functionality to template the selected dashboard and return the corresponding dashboard as dictionary
 
 **Arguments**:
 
-- `template_values` _dict_ - Specify the inserted templating values as dict
+- `template_values` _Dict_ - Specify the inserted templating values as dict
   
 
 **Raises**:
 
-- `Exception` - Unspecified error by executing the functionality
+- `jinja2.TemplateNotFound` - Jinja2 template not found
   
 
 **Returns**:
 
-- `json_dashboard` _dict_ - Returns the dashboard as dict
+- `json_dashboard` _Dict_ - Returns the dashboard as dict
 
