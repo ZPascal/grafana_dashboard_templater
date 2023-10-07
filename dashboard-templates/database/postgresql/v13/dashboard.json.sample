@@ -1,22 +1,6 @@
 {
   "annotations": {
-    "list": [
-      {
-        "builtIn": 1,
-        "datasource": "-- Grafana --",
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [],
-          "type": "dashboard"
-        },
-        "type": "dashboard"
-      }
-    ]
+    "list": []
   },
   "description": "Performance metrics for Postgres",
   "editable": true,
@@ -24,17 +8,22 @@
   "gnetId": 455,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1639339796069,
   "links": [],
   "liveNow": false,
   "panels": [
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": null
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -96,10 +85,12 @@
             "min"
           ],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.1",
@@ -108,7 +99,7 @@
           "alias": "fetched",
           "datasource": {
             "type": "prometheus",
-            "uid": "test"
+            "uid": null
           },
           "dsType": "prometheus",
           "exemplar": true,
@@ -169,7 +160,7 @@
           "alias": "fetched",
           "datasource": {
             "type": "prometheus",
-            "uid": "test"
+            "uid": null
           },
           "dsType": "prometheus",
           "expr": "sum(irate(pg_stat_database_tup_returned{datname=~\"$db\",instance=~\"$host\"}[5m]))",
@@ -227,7 +218,7 @@
           "alias": "fetched",
           "datasource": {
             "type": "prometheus",
-            "uid": "test"
+            "uid": null
           },
           "dsType": "prometheus",
           "expr": "sum(irate(pg_stat_database_tup_inserted{datname=~\"$db\",instance=~\"$host\"}[5m]))",
@@ -285,7 +276,7 @@
           "alias": "fetched",
           "datasource": {
             "type": "prometheus",
-            "uid": "test"
+            "uid": null
           },
           "dsType": "prometheus",
           "expr": "sum(irate(pg_stat_database_tup_updated{datname=~\"$db\",instance=~\"$host\"}[5m]))",
@@ -343,7 +334,7 @@
           "alias": "fetched",
           "datasource": {
             "type": "prometheus",
-            "uid": "test"
+            "uid": null
           },
           "dsType": "prometheus",
           "expr": "sum(irate(pg_stat_database_tup_deleted{datname=~\"$db\",instance=~\"$host\"}[5m]))",
@@ -404,7 +395,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "test"
+        "uid": null
       },
       "fieldConfig": {
         "defaults": {
@@ -464,9 +455,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.2",
+      "pluginVersion": "10.0.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": null
+          },
           "dsType": "prometheus",
           "expr": "sum(irate(pg_stat_database_xact_commit{datname=~\"$db\",instance=~\"$host\"}[5m])) + sum(irate(pg_stat_database_xact_rollback{datname=~\"$db\",instance=~\"$host\"}[5m]))",
           "format": "time_series",
@@ -526,7 +521,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "test"
+        "uid": null
       },
       "fieldConfig": {
         "defaults": {
@@ -534,6 +529,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -591,15 +588,21 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.1",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": null
+          },
           "expr": "sum(pg_stat_database_blks_hit{datname=~\"$db\",instance=~\"$host\"}) / (sum(pg_stat_database_blks_hit{datname=~\"$db\",instance=~\"$host\"}) + sum(pg_stat_database_blks_read{datname=~\"$db\",instance=~\"$host\"}))",
           "format": "time_series",
           "intervalFactor": 2,
@@ -614,7 +617,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "test"
+        "uid": null
       },
       "fieldConfig": {
         "defaults": {
@@ -622,6 +625,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -680,16 +685,22 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.1",
       "targets": [
         {
           "alias": "conflicts",
+          "datasource": {
+            "type": "prometheus",
+            "uid": null
+          },
           "dsType": "prometheus",
           "expr": "sum(rate(pg_stat_database_deadlocks{datname=~\"$db\",instance=~\"$host\"}[5m]))",
           "format": "time_series",
@@ -742,6 +753,10 @@
         },
         {
           "alias": "deadlocks",
+          "datasource": {
+            "type": "prometheus",
+            "uid": null
+          },
           "dsType": "prometheus",
           "expr": "sum(rate(pg_stat_database_conflicts{datname=~\"$db\",instance=~\"$host\"}[5m]))",
           "format": "time_series",
@@ -799,7 +814,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "test"
+        "uid": null
       },
       "fieldConfig": {
         "defaults": {
@@ -807,6 +822,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -864,15 +881,21 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.1",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": null
+          },
           "expr": "pg_stat_database_numbackends{datname=~\"$db\",instance=~\"$host\"}",
           "format": "time_series",
           "intervalFactor": 2,
@@ -886,30 +909,29 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 33,
+  "schemaVersion": 38,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "database",
+    "postgresql"
+  ],
   "templating": {
     "list": [
       {
         "allValue": ".*",
-        "current": {
-          "selected": false,
-          "text": "metrics.dummy.com:443",
-          "value": "metrics.dummy.com:443"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "test"
+          "uid": null
         },
-        "definition": "label_values(up{job=\"{{ prometheus_name }}-postgresql\"},instance)",
+        "definition": "label_values(up{job=\"{{ prometheus_name }}\"},instance)",
         "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "host",
         "options": [],
         "query": {
-          "query": "label_values(up{job=\"{{ prometheus_name }}-postgresql\"},instance)",
+          "query": "label_values(up{job=\"{{ prometheus_name }}\"},instance)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -923,14 +945,10 @@
       },
       {
         "allValue": ".*",
-        "current": {
-          "selected": false,
-          "text": "{{ app_name }}",
-          "value": "{{ app_name }}"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "test"
+          "uid": null
         },
         "definition": "",
         "hide": 2,
@@ -944,7 +962,7 @@
           "refId": "Prometheus-db-Variable-Query"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/{{ app_name }}/",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
@@ -955,7 +973,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -984,7 +1002,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "{{ app_name | capitalize }} PostgreSQL",
+  "title": "{{ app_name | capitalize }} Postgresql",
   "uid": null,
   "version": 1,
   "weekStart": ""
