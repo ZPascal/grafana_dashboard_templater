@@ -2,7 +2,7 @@
 
 ## Description
 
-The Grafana dashboard templater create a valid Grafana dashboard as dictionary based on a template and injected values.
+The Grafana dashboard templater create a valid Grafana dashboard as dictionary based on a template and injected values. You can find sample dashboards [here](./dashboard-templates/database), but note that you will need to adjust the appropriate settings for your own data sources.
 
 ## Dashboard template folder structure
 

@@ -46,7 +46,7 @@ class DashboardTestCase(TestCase):
         test_model: Model = Model(template_path, "database", "postgresql", "v13")
         test_dashboard: Dashboard = Dashboard(test_model)
         dashboard = test_dashboard.get_dashboard_json(
-            {"app_name": "test", "prometheus_name": "test_name"}
+            {"app_name": "test", "prometheus_name": "test_name-postgresql"}
         )
 
         self.assertEqual("Performance metrics for Postgres", dashboard["description"])
@@ -54,7 +54,7 @@ class DashboardTestCase(TestCase):
             'label_values(up{job="test_name-postgresql"},instance)',
             dashboard["templating"]["list"][0]["definition"],
         )
-        self.assertEqual("test", dashboard["templating"]["list"][1]["current"]["text"])
+        self.assertEqual("Test Postgresql", dashboard["title"])
 
     def test_get_dashboard_json_no_config_template_error(self):
         template_path: str = f"{os.path.dirname(os.getcwd())}{os.sep}dashboard"
