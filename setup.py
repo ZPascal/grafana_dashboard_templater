@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="grafana-dashboard-templater",
-    version="1.0.2",
+    version="1.0.3",
     author="Pascal Zimmermann",
     author_email="info@theiotstudio.com",
     description="A Grafana dashboard templater",
