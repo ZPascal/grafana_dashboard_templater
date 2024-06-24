@@ -48,7 +48,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Execute the linting checks
-        uses: reviewdog/action-flake8@v3.10.0
+        uses: reviewdog/action-flake8@v3.11.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           flake8_args: --config=.flake8
@@ -85,7 +85,7 @@ jobs:
           pytest-coverage-path: ./pytest-coverage.txt
           junitxml-path: ./pytest.xml
           hide-badge: true
-          create-new-comment: true
+          create-new-comment: false
 
       - name: Generate coverage badge
         run: coverage-badge -f -o docs/coverage.svg
