@@ -7,7 +7,6 @@ on:
 jobs:
 
   test:
-    permissions: write-all
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -31,6 +30,7 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
+    permissions: write-all
     strategy:
       matrix:
         python-version: [ '3.10' ]
@@ -49,13 +49,14 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Execute the linting checks
-        uses: reviewdog/action-flake8@v3.12.0
+        uses: reviewdog/action-flake8@v3.13.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           flake8_args: --config=.flake8
 
   coverage:
     runs-on: ubuntu-latest
+    permissions: write-all
     strategy:
       matrix:
         python-version: [ '3.10' ]
