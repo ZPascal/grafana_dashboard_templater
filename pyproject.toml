@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "grafana-dashboard-templater"
+version = "1.0.3"
+authors = [
+    { name = "Pascal Zimmermann", email = "info@theiotstudio.com" },
+]
+description = "A Grafana dashboard templater"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "jinja2",
+]
+
+[project.urls]
+Homepage = "https://github.com/ZPascal/grafana_dashboard_templater"
+"Bug Tracker" = "https://github.com/ZPascal/grafana_dashboard_templater/issues"
+
+[tool.setuptools]
+packages = ["grafana_dashboard"]
