@@ -11,7 +11,7 @@ from grafana_dashboard.dashboard import Dashboard
 
 class DashboardTestCase(TestCase):
     @staticmethod
-    def __get_path_name() -> str:
+    def _get_path_name() -> str:
         if os.path.basename(os.getcwd()) == "tests":
             return f"{os.path.dirname(os.getcwd())}{os.sep}dashboard-templates"
         else:
@@ -42,7 +42,7 @@ class DashboardTestCase(TestCase):
         self.assertNotEqual("Test", test_dashboard.logging)
 
     def test_get_dashboard_json_successful(self):
-        template_path: str = DashboardTestCase.__get_path_name()
+        template_path: str = DashboardTestCase._get_path_name()
         test_model: Model = Model(template_path, "database", "postgresql", "v13")
         test_dashboard: Dashboard = Dashboard(test_model)
         dashboard = test_dashboard.get_dashboard_json(
@@ -66,15 +66,15 @@ class DashboardTestCase(TestCase):
             )
 
     def test_get_dashboard_json_no_template_values_error(self):
-        template_path: str = DashboardTestCase.__get_path_name()
+        template_path: str = DashboardTestCase._get_path_name()
         test_model: Model = Model(template_path, "database", "postgresql", "v13")
         test_dashboard: Dashboard = Dashboard(test_model)
 
         with self.assertRaises(SystemExit):
             test_dashboard.get_dashboard_json({})
 
-    def test__write_tmp_dashboard_json_write_not_possible(self):
-        template_path: str = DashboardTestCase.__get_path_name()
+    def test_write_tmp_dashboard_json_write_not_possible(self):
+        template_path: str = DashboardTestCase._get_path_name()
         test_model: Model = Model(template_path, "database", "postgresql", "v13")
         test_dashboard: Dashboard = Dashboard(test_model)
 
@@ -86,8 +86,8 @@ class DashboardTestCase(TestCase):
                     {"app_name": "test", "prometheus_name": "test_name"},
                 )
 
-    def test__get_dashboard_json_json_not_available(self):
-        template_path: str = DashboardTestCase.__get_path_name()
+    def test_get_dashboard_json_json_not_available(self):
+        template_path: str = DashboardTestCase._get_path_name()
         test_model: Model = Model(template_path, "database", "postgresql", "v13")
         test_dashboard: Dashboard = Dashboard(test_model)
 
