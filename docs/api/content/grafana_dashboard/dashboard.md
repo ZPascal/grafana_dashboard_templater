@@ -1,0 +1,50 @@
+# Table of Contents
+
+* [grafana\_dashboard.dashboard](#grafana_dashboard.dashboard)
+  * [Dashboard](#grafana_dashboard.dashboard.Dashboard)
+    * [get\_dashboard\_json](#grafana_dashboard.dashboard.Dashboard.get_dashboard_json)
+
+<a id="grafana_dashboard.dashboard"></a>
+
+# grafana\_dashboard.dashboard
+
+<a id="grafana_dashboard.dashboard.Dashboard"></a>
+
+## Dashboard Objects
+
+```python
+class Dashboard()
+```
+
+Template the selected dashboard and return it as a dict.
+
+**Arguments**:
+
+- `dashboard_model` _Model_ - Inject a dashboard object that includes all necessary values and information
+
+**Attributes**:
+
+- `dashboard_model` _Model_ - This is where we store the model
+- `logging` _logging.Logger_ - This is where we store the logger
+
+<a id="grafana_dashboard.dashboard.Dashboard.get_dashboard_json"></a>
+
+#### get\_dashboard\_json
+
+```python
+def get_dashboard_json(template_values: Dict) -> Dict
+```
+
+Template the selected dashboard and return it as a dictionary.
+
+**Arguments**:
+
+- `template_values` _Dict_ - Specify the inserted templating values as dict
+
+**Raises**:
+
+- `jinja2.TemplateNotFound` - Jinja2 template not found
+
+**Returns**:
+
+- `json_dashboard` _Dict_ - Returns the dashboard as dict
