@@ -15,7 +15,7 @@
 class Model()
 ```
 
-The class includes all necessary variables to specify a query for the datasource search endpoint
+Store configuration for dashboard templating.
 
 **Arguments**:
 
@@ -23,4 +23,3 @@ The class includes all necessary variables to specify a query for the datasource
 - `dashboard_type` _str_ - Specify the dashboard type e.g. database (default None)
 - `dashboard_name` _str_ - Specify the dashboard name e.g. postgres (default None)
 - `dashboard_version` _str_ - Specify the dashboard version e.g. v13 (default None)
-

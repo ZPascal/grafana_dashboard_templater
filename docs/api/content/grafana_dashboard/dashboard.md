@@ -16,12 +16,11 @@
 class Dashboard()
 ```
 
-The class includes all necessary methods to template the selected dashboard and return it as a dict
+Template the selected dashboard and return it as a dict.
 
 **Arguments**:
 
 - `dashboard_model` _Model_ - Inject a dashboard object that includes all necessary values and information
-  
 
 **Attributes**:
 
@@ -36,19 +35,16 @@ The class includes all necessary methods to template the selected dashboard and 
 def get_dashboard_json(template_values: Dict) -> Dict
 ```
 
-The method includes a functionality to template the selected dashboard and return the corresponding dashboard as dictionary
+Template the selected dashboard and return it as a dictionary.
 
 **Arguments**:
 
 - `template_values` _Dict_ - Specify the inserted templating values as dict
-  
 
 **Raises**:
 
 - `jinja2.TemplateNotFound` - Jinja2 template not found
-  
 
 **Returns**:
 
 - `json_dashboard` _Dict_ - Returns the dashboard as dict
-
