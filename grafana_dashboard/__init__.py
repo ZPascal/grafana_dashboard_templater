@@ -1,1 +1,1 @@
-
+"""Grafana Dashboard Templater module."""
