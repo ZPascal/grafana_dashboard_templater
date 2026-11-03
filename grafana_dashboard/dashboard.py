@@ -1,3 +1,4 @@
+"""Dashboard templating module."""
 import os
 import sys
 import json
@@ -11,7 +12,7 @@ from .model import Model
 
 
 class Dashboard:
-    """The class includes all necessary methods to template the selected dashboard and return it as a dict
+    """Template the selected dashboard and return it as a dict.
 
     Args:
         dashboard_model (Model): Inject a dashboard object that includes all necessary values and information
@@ -19,14 +20,16 @@ class Dashboard:
     Attributes:
         dashboard_model (Model): This is where we store the model
         logging (logging.Logger): This is where we store the logger
+
     """
 
     def __init__(self, dashboard_model: Model):
+        """Initialize the Dashboard with a model."""
         self.dashboard_model = dashboard_model
         self.logging = logging.Logger
 
     def get_dashboard_json(self, template_values: Dict) -> Dict:
-        """The method includes a functionality to template the selected dashboard and return the corresponding dashboard as dictionary
+        """Template the selected dashboard and return it as a dictionary.
 
         Args:
             template_values (Dict): Specify the inserted templating values as dict
@@ -36,8 +39,8 @@ class Dashboard:
 
         Returns:
             json_dashboard (Dict): Returns the dashboard as dict
-        """
 
+        """
         env = jinja2.Environment(loader=jinja2.FileSystemLoader("/"))
 
         try:
@@ -63,7 +66,7 @@ class Dashboard:
     def __write_tmp_dashboard_json(
         temp_path: str, template_dashboard: jinja2.Template, template_values: Dict
     ):
-        """The method includes a functionality to write a templated json of the selected dashboard to a temporary file
+        """Write a templated dashboard JSON to a temporary file.
 
         Args:
             temp_path (str): Specify the temporary path as string
@@ -77,8 +80,8 @@ class Dashboard:
 
         Returns:
             None
-        """
 
+        """
         try:
             fw = open(temp_path, "w")
             fw.write(template_dashboard.render(template_values))
@@ -89,7 +92,7 @@ class Dashboard:
 
     @staticmethod
     def __get_dashboard_json(temp_path: str) -> Dict:
-        """The method includes a functionality to get the corresponding templated dashboard JSON as Dict
+        """Get the templated dashboard JSON as a dictionary.
 
         Args:
             temp_path (str): Specify the temporary path as string
@@ -100,8 +103,8 @@ class Dashboard:
 
         Returns:
             json_dashboard (Dict): Returns the dashboard JSON as dict
-        """
 
+        """
         try:
             with open(temp_path) as file:
                 json_dashboard: Dict = json.load(file)
@@ -112,12 +115,12 @@ class Dashboard:
         return json_dashboard
 
     def __get_dashboard_template(self) -> str:
-        """The methode identify and return the path of the dashboard template sample
+        """Get the path of the dashboard template.
 
         Returns:
             full_dashboard_path (str): Returns the full dashboard path
-        """
 
+        """
         full_dashboard_path: str = (
             f"{self.dashboard_model.dashboard_templates_path}{os.sep}"
             f"{self.dashboard_model.dashboard_type}{os.sep}"

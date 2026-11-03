@@ -1,0 +1,22 @@
+site_name: Grafana Dashboard Templater
+site_description: A Grafana dashboard templater
+site_url: https://github.com/ZPascal/grafana_dashboard_templater
+repo_url: https://github.com/ZPascal/grafana_dashboard_templater
+repo_name: grafana_dashboard_templater
+
+theme:
+  name: material
+  palette:
+    scheme: default
+  icon:
+    repo: fontawesome/brands/github
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - API Reference: api/index.md
+  - Examples: examples/index.md
+  - Contributing: contributing.md
+
+plugins:
+  - search

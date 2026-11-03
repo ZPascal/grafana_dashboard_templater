@@ -1,0 +1,16 @@
+loaders:
+  - type: python
+    search_path:
+      - grafana_dashboard
+
+processors:
+  - type: filter
+    skip_empty_modules: true
+  - type: smart
+
+renderer:
+  type: mkdocs
+  output_directory: build/docs
+  markdown:
+    descriptive_class_title: false
+    descriptive_module_title: false
