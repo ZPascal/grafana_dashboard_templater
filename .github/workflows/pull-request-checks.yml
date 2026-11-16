@@ -81,7 +81,7 @@ jobs:
         run: export PYTHONPATH=$PWD && pytest --junitxml=pytest.xml --cov=. tests/ | tee pytest-coverage.txt
 
       - name: Execute the coverage checks
-        uses: MishaKav/pytest-coverage-comment@v1.13.0
+        uses: MishaKav/pytest-coverage-comment@v1.13.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pytest-coverage-path: ./pytest-coverage.txt
@@ -119,7 +119,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ '3.9' ]
+        python-version: [ '3.10' ]
 
     steps:
       - uses: actions/checkout@v7
@@ -135,10 +135,10 @@ jobs:
           cache: 'pip'
 
       - name: Install the requirements
-        run: pip install pydoc-markdown==4.6.3 mkdocs mkdocs-material
+        run: pip install pydoc-markdown==4.8.2 mkdocs mkdocs-material
 
       - name: Generate documentation
-        run: pydoc-markdown --render-toc && rm -rf docs/content && mv build/docs/* docs
+        run: pydoc-markdown && rm -rf docs/content && mv build/docs/* docs
 
       - name: Check changed files
         uses: tj-actions/verify-changed-files@v20
